@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+	<meta charset=UTF-8>
+	<meta name="author" content="Ismael Eliabe">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Titulo da Pagina -->
+	<title>Inicio</title>
+	<link rel="icon" type="imagem/png" href="{% static '/img/logo1.png' %}"/>
+
+	<!-- Links para folhas de estilo -->
+	<link rel="stylesheet" type="text/css" href="{% static '/fonts/fontawesome-free-5.13.0-web/css/all.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/css/base.css' %}">
+
+	<!-- Links para scripts -->
+	<script type="text/javascript" src=" {% static '/js/scripts.js' %}"></script>
+</head>
+<body>
+	<!--Inicio da Barra de Navegação -->
+	<div class="Bloco-central-da-barra-de-navegacao">
+		<div class="Logotipo-da-barra-de-navegacao">
+			<a href="{% url 'csapp:base' %}"><img src="{% static '/img/catch-logo.png' %}"></a>
+		</div>
+		<form class="Buscador-da-barra-de-navegacao ">
+			<input type="text" name="buscador" placeholder="Digite sua região...">
+			<div></div>
+			<a href="#"><i class="fas fa-search"></i></a>
+		</form>
+
+		<div class="Botoes-para-login-e-criar-nova-conta-da-barra-de-navegacao">
+			{% if user.is_authenticated %}
+			<div class="Funcoes-do-perfil-na-navegacao">
+				<!--
+				<div class="nofify-icons">
+					<div>
+					<div class="circle"></div>
+					<a href="#" class="Botao-para-inbox"><i class="far fa-envelope"></i></a>
+				</div>
+					<div>
+					<div class="circle"></div>
+					<a href="#" class="Botao-para-inbox"><i class="far fa-paper-plane"></i></a>
+				</div>
+				</div>
+				-->
+				<div class="Botao-que-mostra-info-do-perfil">
+					<button>
+						<font>{{ user.username }}</font>
+						<img src="{{ user.userprofileinfo.profile_pic.url }}" alt="{{ user.username }}">
+						<i class="fas fa-bars"></i>
+					</button>
+					<div class="dropdown shadow">
+						<div class="dropcontent">
+							<a href="{% url 'csapp:profile' %}"><i class="far fa-user-circle"></i> Perfil</a>
+							<a href="#"><i class="fas fa-cog"></i> Configurações</a>
+							<a href="{% url 'csapp:exit' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% else %}
+				<a href="{% url 'csapp:signin' %}" class="Botao-link-para-pagina-de-Login"><font>ENTRAR</font></a>
+				<a href="{% url 'csapp:signup' %}" class="Botao-link-para-pagina-de-criar-conta Cor-do-botao-de-criar-conta ">
+					<font>Começe agora!</font>
+				</a>
+			{% endif %}
+		</div>
+	</div>
+
+	<!-- container -->
+	<div class="container">
+        {% block body_block %}
+        {% endblock %}
+	</div>
+
+	<script src="{% static 'vendor/node_modules/chart.js/dist/Chart.js' %}"></script>
+
+	<script src="{% static '/js/chart-pie-demo.js' %}"></script>
+</body>
+</html>

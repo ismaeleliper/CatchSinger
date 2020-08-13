@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body_block %}
+		<!-- Formulario de busca -->
+		<form class="block-buscador ">
+			<div class="icon-lupa"><i class="fas fa-search"></i></div>
+			<div class="inputs">
+				<input type="text" name="" placeholder="Buscar por região...">
+			</div>
+			<div class="icon-seta"><button><i class="fas fa-angle-right"></i></button></div>
+		</form>
+
+		<h1 class="publi-text">Encontre o artista ideal para seu evento!</h1>
+		<div class="divider"><hr></div>
+		<a href="{% url 'csapp:signup' %}" class="publi-button shadow">Inscreva-se</a>
+{% endblock %}

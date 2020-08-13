@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+	<meta charset=UTF-8>
+	<meta name="author" content="Ismael Eliabe">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+	<!-- Titulo da Pagina -->
+	<title>Registro</title>
+	<link rel="icon" type="imagem/png" href="{% static '/img/logo1.png' %}"/>
+
+	<!-- Links para folhas de estilo -->
+	<link rel="stylesheet" type="text/css" href="{% static '/fonts/fontawesome-free-5.13.0-web/css/all.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/css/base.css' %}">
+
+	<!-- Links para scripts -->
+	<script type="text/javascript" src="{% static '/js/script.js' %}"></script>
+</head>
+<body>
+	{% if registered %}
+		{{ already_registered }}
+	{% else %}
+	<section class="wrapper">
+		<div class="content-form special-grad shadow">
+			<header class="header">
+				<a href="{% url 'csapp:base' %}"><img src="{% static '/img/catch-logo.png' %}" width="220" height="40"></a>
+			</header>
+			<form enctype="multipart/form-data" method="POST" action="{% url 'csapp:signup' %}" class="form-pattern">
+				<label>Começe com sua conta do Google, Facebook</label>
+				<div class="input-group">
+					<button  type="button" class="google-button"><img style="margin-top: 5px;" src="{% static '/img/google-icon.png' %}" width="20" height="20"></button>
+					<button  type="button" class="face-button"><img style="margin-top:5px; margin-right: 2px;" src="{% static '/img/face-icon.png' %}" width="25" height="20"></button>
+				</div>
+				<label style="color: #fff;">ou</label>
+                {% csrf_token %}
+				<div class="input-group">
+					{{ user_form }}
+					{{ profile_form }}
+				</div>
+				<div class="input-group">
+					<button type="submit" class="entry-btn" value="Criar conta">Criar conta</button>
+				</div>
+				<footer class="footer-log">
+					<font>Já possui conta?</font><a href="{% url 'csapp:signin' %}" title="Clique aqui!">Entre aqui</a>
+	    		</footer>
+			</form>
+		</div>
+	</section>
+	{% endif %}
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
